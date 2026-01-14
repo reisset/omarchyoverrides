@@ -41,6 +41,10 @@ log_info "Removing stow symlinks..."
 cd "$REPO_DIR"
 stow -v -D -t "$HOME" omarchy
 
+# Reload Hyprland to pick up config changes (symlink removal doesn't trigger auto-reload)
+log_info "Reloading Hyprland config..."
+hyprctl reload
+
 print_success_box "Uninstall Complete!"
 
 log_info "Symlinks removed. To restore Omarchy defaults, run:"
