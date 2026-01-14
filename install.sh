@@ -49,6 +49,14 @@ if ! command -v stow &> /dev/null; then
     fi
 fi
 
+# Install Brave browser if not present
+if ! command -v brave &> /dev/null && ! command -v brave-browser &> /dev/null; then
+    log_info "Installing Brave browser..."
+    curl -fsS https://dl.brave.com/install.sh | sh
+else
+    log_info "Brave browser already installed, skipping..."
+fi
+
 # Backup existing configs
 log_info "Backing up existing configs..."
 BACKUP_DIR="$HOME/.config/hypr/backup-$(date +%Y%m%d-%H%M%S)"
