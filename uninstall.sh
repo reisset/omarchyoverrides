@@ -41,16 +41,23 @@ log_info "Removing stow symlinks..."
 cd "$REPO_DIR"
 stow -v -D -t "$HOME" omarchy
 
-# Reload Hyprland to pick up config changes (symlink removal doesn't trigger auto-reload)
+# Restore Omarchy defaults (files must exist before Hyprland reloads)
+log_info "Restoring Omarchy default configs..."
+omarchy-refresh-config hypr/bindings.conf
+omarchy-refresh-config hypr/hypridle.conf
+
+# Reload Hyprland to pick up restored configs
 log_info "Reloading Hyprland config..."
 hyprctl reload
 
+# Restart hypridle with default config
+log_info "Restarting hypridle daemon..."
+killall hypridle 2>/dev/null || true
+hypridle > /dev/null 2>&1 &
+disown
+sleep 0.5
+
 print_success_box "Uninstall Complete!"
 
-log_info "Symlinks removed. To restore Omarchy defaults, run:"
-echo "  omarchy-refresh-config hypr/bindings.conf"
-echo "  omarchy-refresh-config hypr/hypridle.conf"
-echo ""
-log_warn "Then restart hypridle:"
-echo "  killall hypridle && hypridle &"
+log_info "Omarchy defaults have been restored."
 echo ""
