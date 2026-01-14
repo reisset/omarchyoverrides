@@ -82,8 +82,9 @@ hyprctl reload
 # Restart hypridle to apply new timeout settings
 log_info "Restarting hypridle daemon..."
 killall hypridle 2>/dev/null || true
-hypridle &
+hypridle > /dev/null 2>&1 &
 disown
+sleep 0.5  # Let hypridle initialize before printing
 
 print_success_box "Installation Complete!"
 
