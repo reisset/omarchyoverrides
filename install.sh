@@ -75,6 +75,10 @@ log_info "Stowing omarchy overrides..."
 cd "$REPO_DIR"
 stow -v -t "$HOME" omarchy
 
+# Reload Hyprland to pick up new bindings (symlinks don't trigger auto-reload)
+log_info "Reloading Hyprland config..."
+hyprctl reload
+
 # Restart hypridle to apply new timeout settings
 log_info "Restarting hypridle daemon..."
 killall hypridle 2>/dev/null || true
