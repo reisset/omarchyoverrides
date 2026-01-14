@@ -59,17 +59,29 @@ fi
 
 # Backup existing configs
 log_info "Backing up existing configs..."
-BACKUP_DIR="$HOME/.config/hypr/backup-$(date +%Y%m%d-%H%M%S)"
-mkdir -p "$BACKUP_DIR"
+BACKUP_DIR="$HOME/.config/omarchy-overrides-backup-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$BACKUP_DIR/hypr" "$BACKUP_DIR/waybar"
 
+# Backup hypr configs
 if [ -f "$HOME/.config/hypr/bindings.conf" ] && [ ! -L "$HOME/.config/hypr/bindings.conf" ]; then
-    cp "$HOME/.config/hypr/bindings.conf" "$BACKUP_DIR/"
-    log_info "Backed up bindings.conf"
+    cp "$HOME/.config/hypr/bindings.conf" "$BACKUP_DIR/hypr/"
+    log_info "Backed up hypr/bindings.conf"
 fi
 
 if [ -f "$HOME/.config/hypr/hypridle.conf" ] && [ ! -L "$HOME/.config/hypr/hypridle.conf" ]; then
-    cp "$HOME/.config/hypr/hypridle.conf" "$BACKUP_DIR/"
-    log_info "Backed up hypridle.conf"
+    cp "$HOME/.config/hypr/hypridle.conf" "$BACKUP_DIR/hypr/"
+    log_info "Backed up hypr/hypridle.conf"
+fi
+
+# Backup waybar configs
+if [ -f "$HOME/.config/waybar/config.jsonc" ] && [ ! -L "$HOME/.config/waybar/config.jsonc" ]; then
+    cp "$HOME/.config/waybar/config.jsonc" "$BACKUP_DIR/waybar/"
+    log_info "Backed up waybar/config.jsonc"
+fi
+
+if [ -f "$HOME/.config/waybar/style.css" ] && [ ! -L "$HOME/.config/waybar/style.css" ]; then
+    cp "$HOME/.config/waybar/style.css" "$BACKUP_DIR/waybar/"
+    log_info "Backed up waybar/style.css"
 fi
 
 log_info "Backups saved to: $BACKUP_DIR"
@@ -77,6 +89,8 @@ log_info "Backups saved to: $BACKUP_DIR"
 # Remove existing files (stow needs the target to not exist)
 rm -f "$HOME/.config/hypr/bindings.conf"
 rm -f "$HOME/.config/hypr/hypridle.conf"
+rm -f "$HOME/.config/waybar/config.jsonc"
+rm -f "$HOME/.config/waybar/style.css"
 
 # Stow the package
 log_info "Stowing omarchy overrides..."
@@ -92,13 +106,20 @@ log_info "Restarting hypridle daemon..."
 killall hypridle 2>/dev/null || true
 hypridle > /dev/null 2>&1 &
 disown
-sleep 0.5  # Let hypridle initialize before printing
+
+# Restart waybar to apply new styling
+log_info "Restarting waybar..."
+killall waybar 2>/dev/null || true
+waybar > /dev/null 2>&1 &
+disown
+sleep 0.5  # Let services initialize before printing
 
 print_success_box "Installation Complete!"
 
 log_info "Your overrides are now active:"
 echo "  - Keybindings: SUPER+Q close, custom app launchers"
 echo "  - Idle timeout: 5 min screensaver, 10 min lock, 15 min screen off"
+echo "  - Waybar: scaled up (height 30, icons 19px, text 14px)"
 echo ""
 log_warn "Don't forget to visit omarchy-cleaner for package removal:"
 echo "  https://github.com/maxart/omarchy-cleaner"

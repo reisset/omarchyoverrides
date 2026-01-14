@@ -22,6 +22,9 @@ Custom configurations for [Omarchy](https://omarchy.org/), the beautiful Arch Li
 - **Lock screen**: 10 minutes (600s)
 - **Screen off**: 15 minutes (900s)
 
+### Waybar (`waybar/`)
+- **Scaled up**: bar height 30, global font 14px, status icons 19px, tray icons 16px
+
 ## Usage
 
 ### Fresh Install
@@ -52,9 +55,12 @@ omarchyoverrides/
 ├── uninstall.sh
 └── omarchy/              # GNU Stow package
     └── .config/
-        └── hypr/
-            ├── bindings.conf
-            └── hypridle.conf
+        ├── hypr/
+        │   ├── bindings.conf
+        │   └── hypridle.conf
+        └── waybar/
+            ├── config.jsonc
+            └── style.css
 ```
 
 ## Extending

@@ -45,6 +45,8 @@ stow -v -D -t "$HOME" omarchy
 log_info "Restoring Omarchy default configs..."
 omarchy-refresh-config hypr/bindings.conf
 omarchy-refresh-config hypr/hypridle.conf
+omarchy-refresh-config waybar/config.jsonc
+omarchy-refresh-config waybar/style.css
 
 # Reload Hyprland to pick up restored configs
 log_info "Reloading Hyprland config..."
@@ -54,6 +56,12 @@ hyprctl reload
 log_info "Restarting hypridle daemon..."
 killall hypridle 2>/dev/null || true
 hypridle > /dev/null 2>&1 &
+disown
+
+# Restart waybar with default config
+log_info "Restarting waybar..."
+killall waybar 2>/dev/null || true
+waybar > /dev/null 2>&1 &
 disown
 sleep 0.5
 

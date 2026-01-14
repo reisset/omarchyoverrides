@@ -24,9 +24,12 @@ omarchy-refresh-config hypr/bindings.conf
 ```
 omarchy/                    # Stow package - mirrors ~/.config structure
 └── .config/
-    └── hypr/
-        ├── bindings.conf   # Keybindings (SUPER+Q close, app launchers)
-        └── hypridle.conf   # Idle timeouts (5/10/15 min)
+    ├── hypr/
+    │   ├── bindings.conf   # Keybindings (SUPER+Q close, app launchers)
+    │   └── hypridle.conf   # Idle timeouts (5/10/15 min)
+    └── waybar/
+        ├── config.jsonc    # Bar height (30), tray icon-size (16)
+        └── style.css       # Global font 14px, status icons 19px
 ```
 
 Stow creates symlinks: `~/.config/hypr/bindings.conf` → `repo/omarchy/.config/hypr/bindings.conf`
