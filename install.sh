@@ -98,7 +98,7 @@ print_success_box "Installation Complete!"
 
 log_info "Your overrides are now active:"
 echo "  - Keybindings: SUPER+Q close, custom app launchers"
-echo "  - Idle timeout: 8 minutes before screensaver"
+echo "  - Idle timeout: 5 min screensaver, 10 min lock, 15 min screen off"
 echo ""
 log_warn "Don't forget to visit omarchy-cleaner for package removal:"
 echo "  https://github.com/maxart/omarchy-cleaner"

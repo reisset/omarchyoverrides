@@ -26,7 +26,7 @@ omarchy/                    # Stow package - mirrors ~/.config structure
 └── .config/
     └── hypr/
         ├── bindings.conf   # Keybindings (SUPER+Q close, app launchers)
-        └── hypridle.conf   # Idle timeouts (8min screensaver/lock)
+        └── hypridle.conf   # Idle timeouts (5/10/15 min)
 ```
 
 Stow creates symlinks: `~/.config/hypr/bindings.conf` → `repo/omarchy/.config/hypr/bindings.conf`

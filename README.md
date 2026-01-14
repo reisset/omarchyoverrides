@@ -18,9 +18,9 @@ Custom configurations for [Omarchy](https://omarchy.org/), the beautiful Arch Li
 - `SUPER SHIFT ALT + A` - Grok
 
 ### Idle Settings (`hypridle.conf`)
-- **Screensaver**: 8 minutes (480s) - default is 2.5 minutes
-- **Lock screen**: 8 minutes 1 second (481s)
-- **Screen off**: 8 minutes 10 seconds (490s)
+- **Screensaver**: 5 minutes (300s)
+- **Lock screen**: 10 minutes (600s)
+- **Screen off**: 15 minutes (900s)
 
 ## Usage
 
