@@ -29,7 +29,7 @@ Custom configurations for [Omarchy](https://omarchy.org/), the beautiful Arch Li
 
 ### Fresh Install
 ```bash
-git clone git@github.com:reisset/omarchyoverrides.git
+git clone https://github.com/reisset/omarchyoverrides.git
 cd omarchyoverrides
 ./install.sh
 ```
