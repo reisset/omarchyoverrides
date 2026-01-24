@@ -45,6 +45,7 @@ stow -v -D -t "$HOME" omarchy
 log_info "Restoring Omarchy default configs..."
 omarchy-refresh-config hypr/bindings.conf
 omarchy-refresh-config hypr/hypridle.conf
+omarchy-refresh-config hypr/looknfeel.conf
 omarchy-refresh-config waybar/config.jsonc
 omarchy-refresh-config waybar/style.css
 

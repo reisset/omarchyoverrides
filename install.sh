@@ -73,6 +73,11 @@ if [ -f "$HOME/.config/hypr/hypridle.conf" ] && [ ! -L "$HOME/.config/hypr/hypri
     log_info "Backed up hypr/hypridle.conf"
 fi
 
+if [ -f "$HOME/.config/hypr/looknfeel.conf" ] && [ ! -L "$HOME/.config/hypr/looknfeel.conf" ]; then
+    cp "$HOME/.config/hypr/looknfeel.conf" "$BACKUP_DIR/hypr/"
+    log_info "Backed up hypr/looknfeel.conf"
+fi
+
 # Backup waybar configs
 if [ -f "$HOME/.config/waybar/config.jsonc" ] && [ ! -L "$HOME/.config/waybar/config.jsonc" ]; then
     cp "$HOME/.config/waybar/config.jsonc" "$BACKUP_DIR/waybar/"
@@ -89,6 +94,7 @@ log_info "Backups saved to: $BACKUP_DIR"
 # Remove existing files (stow needs the target to not exist)
 rm -f "$HOME/.config/hypr/bindings.conf"
 rm -f "$HOME/.config/hypr/hypridle.conf"
+rm -f "$HOME/.config/hypr/looknfeel.conf"
 rm -f "$HOME/.config/waybar/config.jsonc"
 rm -f "$HOME/.config/waybar/style.css"
 
@@ -120,6 +126,7 @@ log_info "Your overrides are now active:"
 echo "  - Keybindings: SUPER+Q close, custom app launchers"
 echo "  - Idle timeout: 5 min screensaver, 10 min lock, 15 min screen off"
 echo "  - Waybar: scaled up (height 30, icons 19px, text 14px)"
+echo "  - Performance: blur off, shadows off, VFR enabled"
 echo ""
 log_warn "Don't forget to visit omarchy-cleaner for package removal:"
 echo "  https://github.com/maxart/omarchy-cleaner"
